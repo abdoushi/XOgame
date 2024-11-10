@@ -10,8 +10,19 @@ turn.textContent = `${names.textContent}'s Turn`;
 squares.forEach((square) => {
   square.addEventListener("click", () => {
     if (gameover) return;
+
     if (square.textContent === "") {
       square.textContent = currentPlayer;
+      
+      if (currentPlayer === "O") {
+        currentPlayer = "X";
+        names.textContent = "Player 2";
+        turn.textContent = `${names.textContent}'s Turn`;
+      } else if (currentPlayer === "X") {
+        currentPlayer = "O";
+        names.textContent = "Player 1";
+        turn.textContent = `${names.textContent}'s Turn`;
+      }
 
       if (checkwin()) {
         turn.textContent = `${names.textContent} WINS!!`;
@@ -26,15 +37,7 @@ squares.forEach((square) => {
         return;
       }
 
-      if (currentPlayer === "O") {
-        currentPlayer = "X";
-        names.textContent = "Player 2";
-        turn.textContent = `${names.textContent}'s Turn`;
-      } else if (currentPlayer === "X") {
-        currentPlayer = "O";
-        names.textContent = "Player 1";
-        turn.textContent = `${names.textContent}'s Turn`;
-      }
+      
     }
   });
 });
