@@ -62,7 +62,7 @@ function checkdraw() {
   const allSqauresfilled = Array.from(squares).every(
     (square) => square.textContent !== ""
   );
-  return allSqauresfilled;
+  return allSqauresfilled && !checkwin();
 }
 function reset() {
   location.reload();
