@@ -2,22 +2,26 @@ const squares = document.querySelectorAll(".container div");
 const names = document.getElementById("name");
 const turn = document.getElementById("turn");
 
+let gameover = false;
 let currentPlayer = "O";
 names.textContent = "Player 1";
 
 turn.textContent = `${names.textContent}'s Turn`;
 squares.forEach((square) => {
   square.addEventListener("click", () => {
+    if (gameover) return;
     if (square.textContent === "") {
       square.textContent = currentPlayer;
 
       if (checkwin()) {
         turn.textContent = `${names.textContent} WINS!!`;
+        gameover = ture ;
         setTimeout(reset, 5000);
         return;
       }
       if (checkdraw()) {
         turn.textContent = `IT'S A DRAW`;
+        gameover = ture ;
         setTimeout(reset, 5000);
         return;
       }
