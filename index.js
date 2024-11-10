@@ -3,7 +3,7 @@ const names = document.getElementById("name");
 const turn = document.getElementById("turn");
 
 let gameover = false;
-let currentPlayer = "O";
+let currentPlayer = "";
 names.textContent = "Player 1";
 
 turn.textContent = `${names.textContent}'s Turn`;
