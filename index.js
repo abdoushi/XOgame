@@ -2,49 +2,43 @@ const squares = document.querySelectorAll(".container div");
 const names = document.getElementById("name");
 const turn = document.getElementById("turn");
 
-
+let gameover = false;
 let currentPlayer = "O";
 names.textContent = "Player 1";
+turn.textContent = `${names.textContent}'s Turn (${currentPlayer})`;
 
-turn.textContent = `${names.textContent}'s Turn`;
 squares.forEach((square) => {
   square.addEventListener("click", () => {
-    
-
+    if (gameover) return;
     if (square.textContent === "") {
       square.textContent = currentPlayer;
 
-      if (currentPlayer === "O") {
-        currentPlayer = "X";
-        names.textContent = "Player 2";
-        turn.textContent = `${names.textContent}'s Turn`;
-      } else if (currentPlayer === "X") {
-        currentPlayer = "O";
-        names.textContent = "Player 1";
-        turn.textContent = `${names.textContent}'s Turn`;
-      }
-
       if (checkwin()) {
         turn.textContent = `${names.textContent} WINS!!`;
-        
+        gameover = true;
         setTimeout(reset, 5000);
-
         return;
       }
       if (checkdraw()) {
         turn.textContent = `IT'S A DRAW`;
+        gameover = true;
         setTimeout(reset, 5000);
         return;
       }
 
-      
+      if (currentPlayer === "O") {
+        currentPlayer = "X";
+        names.textContent = "Player 2";
+        turn.textContent = `${names.textContent}'s Turn (${currentPlayer})`;
+      } else if (currentPlayer === "X") {
+        currentPlayer = "O";
+        names.textContent = "Player 1";
+        turn.textContent = `${names.textContent}'s Turn (${currentPlayer})`;
+      }
     }
   });
 });
 
-function gameover(){
-  squares.textContent =""
-}
 function checkwin() {
   const win = [
     ["11", "12", "13"],
